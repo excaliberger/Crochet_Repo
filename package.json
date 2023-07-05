@@ -6,11 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:client": "cd src/client && npm start",
-    "dev:server": "cd src/server && npm start"
+    "dev:server": "cd src/server && npm start",
+    "dev:src": "cd src && npm start",
+    "dev:root": "npm start"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bryantellius/basic-mern-template.git"
+    "url": "git+https://github.com/excaliberger/Crochet_Repo.git"
   },
   "keywords": [
     "express",
@@ -18,10 +20,7 @@
     "node",
     "react"
   ],
-  "author": "Ben Bryant",
+  "author": "Emily Berger",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Bryantellius/basic-mern-template/issues"
-  },
-  "homepage": "https://github.com/Bryantellius/basic-mern-template#readme"
+  "homepage": "https://github.com/excaliberger/Crochet_Repo#readme"
 }
