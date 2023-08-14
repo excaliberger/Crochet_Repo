@@ -26,6 +26,9 @@
     "url": "https://github.com/excaliberger/Crochet_Repot/issues"
   },
   "homepage": "https://github.com/excaliberger/Crochet_Repot#readme",
-  "proxy": "http://localhost:5000"
-
+  "proxy": "http://localhost:5000",
+  "dependencies": {
+    "path-browserify": "^1.0.1",
+    "stream-browserify": "^3.0.0"
+  }
 }
