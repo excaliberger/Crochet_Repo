@@ -20,7 +20,12 @@
     "node",
     "react"
   ],
-  "author": "Emily Berger",
+  "author": "Ben Bryant",
   "license": "MIT",
-  "homepage": "https://github.com/excaliberger/Crochet_Repo#readme"
+  "bugs": {
+    "url": "https://github.com/excaliberger/Crochet_Repot/issues"
+  },
+  "homepage": "https://github.com/excaliberger/Crochet_Repot#readme",
+  "proxy": "http://localhost:5000"
+
 }

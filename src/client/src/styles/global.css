@@ -2,6 +2,19 @@
   box-sizing: border-box;
 }
 
+h1 {
+  font-size: small !important;
+}
+
+h2 {
+  font-size: xx-small !important;
+}
+
+li {
+  list-style: none;
+  padding: 20px;
+}
+
 html {
   font-size: calc(10px + 2vmin);
 }
@@ -17,4 +30,43 @@ body {
 
 .App {
   min-height: 100vh;
+}
+
+/* .container {
+  margin: 10px !important;
+} */
+
+.card-container {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  background-color: hotpink;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  /* column-rule-width: 2px; */
+  /* column-rule-color: brown; */
+  flex-wrap: wrap;
+  /* column-count: 4; */
+  /* column-width: 300px; */
+  /* grid-template-columns: repeat(auto-fill, 250px); */
+}
+
+.card {
+  width: 250px !important;
+  grid-row-end: auto;
+  margin: 0 auto !important;
+  height: 100%;
+}
+
+.card .row {
+  height: fluid;
+  border: 1px dotted black;
+  padding-top: 10px;
+}
+
+.card .row.image-container {
+  height:200px !important;
+  background-color: red;
 }

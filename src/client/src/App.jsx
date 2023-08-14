@@ -1,31 +1,44 @@
 import { useState, useEffect } from "react";
+import Background from "./components/Background.jsx";
+import SearchBar from "./components/SearchBar.jsx";
 
 function App() {
-  let [testState, setTestState] = useState(null);
+
+  let [list, setList] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/test")
-      .then((res) => res.text())
-      .then((msg) => setTestState(msg))
+    fetchPatterns()
+  }, []);
+
+  const fetchPatterns = () => {
+    fetch(
+      "http://localhost:8080/api/",
+      { mode: "cors" }
+      )
+      .then((res) => res.json())
+      .then((patterns) => {
+        // console.log("patterns", patterns)
+        setList(patterns)})
       .catch((err) => {
         console.error(err);
-        setTestState("Could not connect to test api endpoint :(");
       });
-  }, [testState]);
+  }
 
   return (
-    <div className="App">
-      <header>
-        <h1>Basic Mern Starter Template</h1>
-        <hr />
-        {testState ? (
-          <p>
-            API Working {Boolean(testState).toString()}; Test State: {testState}
-          </p>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </header>
+    <div>
+      <div>
+        <header>
+          <h1>Granny<sup>2</sup></h1>
+        </header>
+      </div>
+      <div>
+        {list ? (
+        <Background
+          fetchPatterns={fetchPatterns}
+          list={list}
+          setList={setList}/>
+        ) : <></>}
+      </div>
     </div>
   );
 }
