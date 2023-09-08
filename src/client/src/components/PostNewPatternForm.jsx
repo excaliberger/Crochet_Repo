@@ -3,7 +3,7 @@ import { update } from "lodash";
 function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
 
     const title = inputValues[0];
-    const link = inputValues[1]
+    const link = inputValues[1];
 
     function updateApi () {
         fetch(
@@ -20,11 +20,8 @@ function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
             let temp = res.json();
             return temp;
         })
-        .then ((res) => {
-            // console.log("res", res);
-            if (res["message"]) {
-                fetchPatterns();
-            }
+        .then (() => {
+            fetchPatterns();
         })
         .catch ((err) => {console.error(err)});                        
     }
@@ -33,12 +30,10 @@ function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
         <div>
             <form 
                 onSubmit={(e) => {
-
                     e.preventDefault();
                     updateApi();
-
-                    }}
-                    >
+                }}
+            >
                 
                 <input
                     name="text"

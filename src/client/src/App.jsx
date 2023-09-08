@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
 import Background from "./components/Background.jsx";
-import SearchBar from "./components/SearchBar.jsx";
 
 function App() {
 
   let [list, setList] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    fetchPatterns()
+    fetchPatterns();
   }, []);
 
   const fetchPatterns = () => {
+
+    // const url = "http://localhost:8080/api/"
+
     fetch(
       "http://localhost:8080/api/",
       { mode: "cors" }
@@ -18,10 +21,12 @@ function App() {
       .then((res) => res.json())
       .then((patterns) => {
         // console.log("patterns", patterns)
-        setList(patterns)})
+        setList(patterns);
+        setIsLoaded(true);
+      })
       .catch((err) => {
         console.error(err);
-      });
+    });
   }
 
   return (
@@ -32,12 +37,11 @@ function App() {
         </header>
       </div>
       <div>
-        {list ? (
+        {isLoaded ? (
         <Background
           fetchPatterns={fetchPatterns}
-          list={list}
-          setList={setList}/>
-        ) : <></>}
+          list={list}/>
+        ) : <>Loading...</>}
       </div>
     </div>
   );

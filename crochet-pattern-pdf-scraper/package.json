@@ -9,5 +9,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module",
+  "types": "module",
+  "dependencies": {
+    "puppeteer": "^21.1.1"
+  }
 }

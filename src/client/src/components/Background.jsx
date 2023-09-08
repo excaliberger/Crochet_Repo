@@ -3,13 +3,19 @@ import Cards from './Cards.jsx';
 import SearchBar from './SearchBar.jsx';
 import filterPatternsByName from '../helpers.js'
 import PostNewPatternForm from './PostNewPatternForm.jsx'
+import PatternDisplayModal from './PatternDisplayModal.jsx';
 
 function Background({ list, fetchPatterns }) {
 
     // let [selectedPattern, setSelectedPattern] = useState({});
-    let [filteredList, setFilteredList] = useState([]);
+    let [filteredList, setFilteredList] = useState([{}]);
     let [searchCriteria, setSearchCriteria] = useState([""]);
-    let [inputValues, setInputValues] = useState(["",""])
+    let [inputValues, setInputValues] = useState(["",""]);
+    let [visible, setVisible] = useState(false);
+
+    const handleToggle = () => {
+        setVisible((current) => !current);
+    }
 
     // function setStateOnClick(singlePattern) {
     //     setSelectedPattern(singlePattern);
@@ -31,16 +37,15 @@ function Background({ list, fetchPatterns }) {
 
     useEffect(() => {
         let newList = filterPatternsByName(list, searchCriteria);
-        console.log("newList", newList);
         setFilteredList(newList);
-        // renderList(filteredList);
-        // console.log("filteredList", filteredList);
-    }, [searchCriteria]);
+        }
+    , [searchCriteria]);
     
-    function displaySearchBar(){
+    function displaySearchBar() {
         return (
-            <div className='padding20pixels' id='searchCriteriaContainer'>
+            <div>
                 <SearchBar
+                    key="SearchBar"
                     list={list}
                     searchCriteria={searchCriteria}
                     setSearchCriteria={setSearchCriteria}
@@ -52,13 +57,15 @@ function Background({ list, fetchPatterns }) {
     };
 
     function renderList(patternList) {
-        
-        return patternList && patternList.map((singlePattern) => {
+
+        return patternList && filteredList.map((singlePattern) => {
             
             return (
-                <div key={singlePattern.ID}> 
+                <div> 
                     <li>
-                        <Cards  ID={singlePattern.ID}
+                        <Cards  key={singlePattern.ID}
+                                handleToggle={handleToggle}
+                                ID={singlePattern.ID}
                                 PATTERN_TITLE={singlePattern.PATTERN_TITLE} 
                                 PATTERN_LINK={singlePattern.PATTERN_LINK}
                         />
@@ -72,6 +79,7 @@ function Background({ list, fetchPatterns }) {
         <div>
             <div>
                 <PostNewPatternForm
+                    key="form"
                     fetchPatterns={fetchPatterns}
                     inputValues={inputValues}
                     setInputValues={setInputValues}
@@ -82,6 +90,13 @@ function Background({ list, fetchPatterns }) {
             </div>
             <div className='card-container'>
                 {renderList(list)}
+            </div>
+            <div>
+                {visible && <PatternDisplayModal
+                                className="modal-container" 
+                                key="modal"
+                                handleToggle={handleToggle}/>}
+
             </div>
        </div>
     )

@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+/* img {
+  position: absolute;
+  overflow: auto;
+  display: flex;
+  justify-content: flex-start;
+} */
+
 h1 {
   font-size: small !important;
 }
@@ -48,6 +55,7 @@ body {
   /* column-rule-width: 2px; */
   /* column-rule-color: brown; */
   flex-wrap: wrap;
+  /* overflow: auto; */
   /* column-count: 4; */
   /* column-width: 300px; */
   /* grid-template-columns: repeat(auto-fill, 250px); */
@@ -55,7 +63,7 @@ body {
 
 .card {
   width: 250px !important;
-  grid-row-end: auto;
+  /* grid-row-end: auto; */
   margin: 0 auto !important;
   height: 100%;
 }
@@ -69,4 +77,31 @@ body {
 .card .row.image-container {
   height:200px !important;
   background-color: red;
+}
+
+.modal-container {
+  max-height: 500px;
+  width: 500px;
+  background-color: aqua !important;
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.modal-container .image-container {
+  width: 500px;
+  display: flex;
+  /* height: 100px; */
+}
+
+.image {
+  max-width: 100px;
+  max-height: 100px;
+  position: absolute;
+  display: flex;
+  margin: 0;
 }

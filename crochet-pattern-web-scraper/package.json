@@ -8,5 +8,12 @@
     "start": "node index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "jsdom": "^22.1.0",
+    "node-html-parser": "^6.1.6",
+    "puppeteer": "^21.1.1",
+    "unirest": "^0.6.0"
+  }
 }
