@@ -20,7 +20,7 @@ function App() {
       )
       .then((res) => res.json())
       .then((patterns) => {
-        // console.log("patterns", patterns)
+        console.log("patterns", patterns)
         setList(patterns);
         setIsLoaded(true);
       })

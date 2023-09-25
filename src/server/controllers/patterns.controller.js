@@ -1,22 +1,21 @@
 import query from "../db/utils.js";
 import path from "path"
-import { appendFile, writeFile } from "fs";
+import { writeFile } from "fs";
 import data from "../db/CROCHET_DB.json"
 
 const dataPath = path.join(`${__dirname}/db/CROCHET_DB.json`);
 
 const findAll = async () => {
-  return query("SELECT ID, PATTERN_TITLE, PATTERN_LINK FROM CROCHET_DB");
+  return await query("SELECT ID, PATTERN_TITLE, PATTERN_LINK FROM CROCHET_DB");
 };
 
 const findOne = async (id) => {
-  return query("SELECT ID, PATTERN_TITLE, PATTERN_LINK FROM CROCHET_DB WHERE ID = ?", [
+  return await query("SELECT ID, PATTERN_TITLE, PATTERN_LINK FROM CROCHET_DB WHERE ID = ?", [
     id
   ]);
 };
 
 const addOne = async (pattern) => {
-  
   let sqlQueryAdd= await query("INSERT INTO CROCHET_DB SET ?", [pattern]);
   pattern['ID']=''+sqlQueryAdd.insertId;
   data.push(pattern);
@@ -60,7 +59,6 @@ const removeOne = async (id) => {
         console.log("successfully created file.");
     }
   });
-  
 };
 
 export default {

@@ -1,9 +1,9 @@
-import { update } from "lodash";
-
 function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
 
-    const title = inputValues[0];
-    const link = inputValues[1];
+    let titleImg = inputValues[0];
+    let title = inputValues[1];
+    let link = inputValues[2];
+    let author = inputValues[3];
 
     function updateApi () {
         fetch(
@@ -13,7 +13,9 @@ function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
                 'Content-Type': 'application/json'
               }, body: JSON.stringify({
                 PATTERN_TITLE: title,
-                PATTERN_LINK: link
+                PATTERN_LINK: link,
+                PATTERN_IMG: titleImg,
+                PATTERN_AUTHOR: author
               })}
         )
         .then ((res) =>  {
