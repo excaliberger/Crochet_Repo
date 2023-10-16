@@ -1,9 +1,10 @@
 import puppeteer from 'puppeteer';
+import patternFunctions from '../controllers/patterns.controller.js'
 // import pattern from "../controllers/patterns.controller.js";
 
 export const imgScraper = async (url) =>  {
 
-    // url = PATTERN_LINK;
+    url = patternFunctions.PATTERN_LINK;
 
     const browser = await puppeteer.launch({
         headless: 'new',
@@ -16,22 +17,23 @@ export const imgScraper = async (url) =>  {
     });
 
     const titleImg = await page.evaluate(() => {
-        const returnedImg = document.getElementsByTagName('img');
+        const returnedImgArray = document.getElementsByTagName('img');
 
-        return Array.from(returnedImg).slice(0, 3).map((img) => {
+        const imgArray = Array.from(returnedImgArray).slice(0, 3).map((img) => {
             const src = img.src;
             return { src };
-        });
+            });
+        
+        return imgArray[0];
     });
-
     console.log(titleImg);
     return titleImg;
 
 };
 
-let testUrl = "https://urbaki.com/crochet/vintage-style-crochet-collar-top/";
+// let testUrl = "https://urbaki.com/crochet/vintage-style-crochet-collar-top/";
 
-imgScraper(testUrl);
+// imgScraper(testUrl);
 
 // export const hScraper = async (url) => {
 

@@ -1,8 +1,9 @@
 import express from "express";
-import patternFunction from "../controllers/patterns.controller.js";
+import pattern from "../controllers/patterns.controller.js";
 import path from "path";
 import fs from "fs";
 import { scraperParamsTrigger } from '../web_scraper/scraper-params.js'
+// import { imgScraper } from "../web_scraper/scraper-fns.js";
 
 // const { scraperParamsTrigger } = require("../web_scraper/scraper-params.js");
 
@@ -17,10 +18,10 @@ router.get("/:id?", async (req, res, next) => {
   let data;
 
   if (id) {
-    data = await patternFunction.findOne(id);
+    data = await pattern.findOne(id);
   } else {
-    console.log("get works");
-    data = await patternFunction.findAll();
+    // console.log("get works");
+    data = await pattern.findAll();
   }
 
   // res.json(data) is what connects and transfers data to frontend through fetch()
@@ -28,18 +29,16 @@ router.get("/:id?", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  // let url = req.body.PATTERN_LINK;
   let body = req.body;
-  let url = patternFunction.PATTERN_LINK;
-  // let data;
+  let url = body.PATTERN_LINK;
   let data;
+  scraperParamsTrigger(url);
+  data = await pattern.addOne(body);
   console.log('------------------------')
   console.log('------------------------')
   console.log("body", body);
   console.log('------------------------')
   console.log('------------------------')
-  scraperParamsTrigger(url);
-  data = await patternFunction.addOne(body);
   res.json({"message": "successfully inserted one value"});
 });
 
@@ -48,13 +47,13 @@ router.put("/:id", async (req, res, next) => {
   let { id } = req.params;
   let data; 
   let body = req.body;
-  data = await patternFunction.updateOne(id, body);
+  data = await pattern.updateOne(id, body);
   res.json({"message": "entry sucessfully updated"});
 });
 
 router.delete("/:id", async (req, res, next) => {
   let { id } = req.params;
-  let data = await patternFunction.removeOne(id);
+  let data = await pattern.removeOne(id);
   res.json({"message": "entry now deleted"});
 });
 

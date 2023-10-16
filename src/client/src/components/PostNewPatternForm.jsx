@@ -1,12 +1,28 @@
 function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues, img, setImg }) {
 
-    // let titleImg = inputValues[0];
+    let titleImg = document.getElementsByTagName('img');
     let title = inputValues[0];
     let link = inputValues[1];
     // let author = inputValues[3];
 
-    
-
+    // const updateEntry = async () => {
+    //     fetch( 
+    //         'http://localhost:8080/api/:id?',
+    //         { mode: "cors", method: "PUT", headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //           }, 
+    //           body: JSON.stringify({
+    //             PATTERN_IMG: titleImg,
+    //             // PATTERN_AUTHOR: author
+    //           })}
+    //     )
+    //     .then ((res) =>  {
+    //         let temp = res.json();
+    //         return temp;
+    //     })
+    //     .catch ((err) => {console.error(err)});                        
+    // };
 
     function updateApi() {
         fetch(
@@ -26,6 +42,9 @@ function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues, img, 
             let temp = res.json();
             return temp;
         })
+        // .then (() => {
+        //     updateEntry()
+        // })
         .then (() => {
             fetchPatterns();
         })
