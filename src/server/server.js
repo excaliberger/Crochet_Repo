@@ -1,9 +1,9 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import apiRouter from "./routes";
-import config from "./config";
-import { errorHandler } from "./middlewares/errorHandler";
+import apiRouter from "./routes/index.js";
+import config from "./config/index.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(morgan("dev"));
 /**
  * Directs incoming static asset requests to the public folder
  */
-app.use(express.static((`${__dirname}../client/src`)));
+app.use(express.static((`./client/src`)));
 
 /**
  * Directs all routes starting with /api to the top level api express router

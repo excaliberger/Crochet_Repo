@@ -3,6 +3,8 @@
   "version": "2.0.0",
   "description": "Express server for basic-mern-template",
   "main": "server.js",
+  "type": "module",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node --trace-warnings --trace-uncaught --async-stack-traces server.js",
@@ -16,6 +18,11 @@
   "author": "Emily Berger",
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "jsdom": "^22.1.0",
+    "node-html-parser": "^6.1.6",
+    "puppeteer": "^21.1.1",
+    "unirest": "^0.6.0",
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.10",
     "@babel/node": "^7.17.10",

@@ -1,8 +1,10 @@
 import express from "express";
-import pattern from "../controllers/patterns.controller.js";
+import patternFunction from "../controllers/patterns.controller.js";
 import path from "path";
 import fs from "fs";
-import { scraperTrigger } from '../crochet-pattern-web-scraper/scraper-params-trigger-fn.js'
+import { scraperParamsTrigger } from '../web_scraper/scraper-params.js'
+
+// const { scraperParamsTrigger } = require("../web_scraper/scraper-params.js");
 
 //set up imports/exports correctly
 
@@ -15,10 +17,10 @@ router.get("/:id?", async (req, res, next) => {
   let data;
 
   if (id) {
-    data = await pattern.findOne(id);
+    data = await patternFunction.findOne(id);
   } else {
     console.log("get works");
-    data = await pattern.findAll();
+    data = await patternFunction.findAll();
   }
 
   // res.json(data) is what connects and transfers data to frontend through fetch()
@@ -26,11 +28,18 @@ router.get("/:id?", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  let { url } = req.body;
+  // let url = req.body.PATTERN_LINK;
+  let body = req.body;
+  let url = patternFunction.PATTERN_LINK;
+  // let data;
   let data;
+  console.log('------------------------')
+  console.log('------------------------')
   console.log("body", body);
-  scraperTrigger(url);
-  data = await pattern.addOne(body);
+  console.log('------------------------')
+  console.log('------------------------')
+  scraperParamsTrigger(url);
+  data = await patternFunction.addOne(body);
   res.json({"message": "successfully inserted one value"});
 });
 
@@ -39,13 +48,13 @@ router.put("/:id", async (req, res, next) => {
   let { id } = req.params;
   let data; 
   let body = req.body;
-  data = await pattern.updateOne(id, body);
+  data = await patternFunction.updateOne(id, body);
   res.json({"message": "entry sucessfully updated"});
 });
 
 router.delete("/:id", async (req, res, next) => {
   let { id } = req.params;
-  let data = await pattern.removeOne(id);
+  let data = await patternFunction.removeOne(id);
   res.json({"message": "entry now deleted"});
 });
 

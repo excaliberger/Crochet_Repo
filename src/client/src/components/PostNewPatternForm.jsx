@@ -1,21 +1,25 @@
-function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
+function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues, img, setImg }) {
 
-    let titleImg = inputValues[0];
-    let title = inputValues[1];
-    let link = inputValues[2];
-    let author = inputValues[3];
+    // let titleImg = inputValues[0];
+    let title = inputValues[0];
+    let link = inputValues[1];
+    // let author = inputValues[3];
 
-    function updateApi () {
+    
+
+
+    function updateApi() {
         fetch(
             'http://localhost:8080/api',
             { mode: "cors", method: "POST", headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-              }, body: JSON.stringify({
+              }, 
+              body: JSON.stringify({
                 PATTERN_TITLE: title,
                 PATTERN_LINK: link,
                 PATTERN_IMG: titleImg,
-                PATTERN_AUTHOR: author
+                // PATTERN_AUTHOR: author
               })}
         )
         .then ((res) =>  {
@@ -26,7 +30,7 @@ function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
             fetchPatterns();
         })
         .catch ((err) => {console.error(err)});                        
-    }
+    };
 
     return (
         <div>
@@ -35,16 +39,14 @@ function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
                     e.preventDefault();
                     updateApi();
                 }}
-            >
-                
+            >                
                 <input
                     name="text"
                     id="title"
                     placeholder='Pattern Name'
                     onChange={ (e) => {
-                        let newInputValues = inputValues;
-                        newInputValues[0] = e.target.value; 
-                        setInputValues([...newInputValues])
+                        inputValues[0] = e.target.value; 
+                        setInputValues([...inputValues])
                     }}
                     >
                 </input>
@@ -53,9 +55,8 @@ function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues }) {
                     id="link"
                     placeholder='Pattern URL'
                     onChange={ (e) => {
-                        let newInputValues = inputValues;
-                        newInputValues[1] = e.target.value; 
-                        setInputValues([...newInputValues])
+                        inputValues[1] = e.target.value; 
+                        setInputValues([...inputValues])
                     }}
                     >
                 </input>

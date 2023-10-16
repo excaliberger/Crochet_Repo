@@ -1,5 +1,5 @@
 
-function Cards({ ID, PATTERN_TITLE, PATTERN_LINK, handleToggle }) {
+function Cards({ PATTERN_ID, PATTERN_IMG, PATTERN_TITLE, PATTERN_LINK, handleToggle }) {
 
     // const targetRef = useRef();
     // const [dimensions, setDimensions] = useState({width: 0, height: 0});
@@ -19,10 +19,10 @@ function Cards({ ID, PATTERN_TITLE, PATTERN_LINK, handleToggle }) {
         
         return (
             <div 
-                className="card border border-dark container"
+                className="card border border-dark container" id={PATTERN_ID}
                 // onClick={handleToggle}
                 >
-                <div className="row image-container"></div>
+                <div className="row image-container">{PATTERN_IMG}</div>
                 <div>
                     <div className="row"><h1>{PATTERN_TITLE}</h1></div>
                     <div className="row"><h2>{PATTERN_LINK}</h2></div>

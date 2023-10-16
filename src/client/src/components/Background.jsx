@@ -3,7 +3,7 @@ import Cards from './Cards.jsx';
 import SearchBar from './SearchBar.jsx';
 import filterPatternsByName from '../helpers.js'
 import PostNewPatternForm from './PostNewPatternForm.jsx'
-import PatternDisplayModal from './PatternDisplayModal.jsx';
+// import PatternDisplayModal from './PatternDisplayModal.jsx';
 
 function Background({ list, fetchPatterns }) {
 
@@ -11,6 +11,7 @@ function Background({ list, fetchPatterns }) {
     let [filteredList, setFilteredList] = useState([{}]);
     let [searchCriteria, setSearchCriteria] = useState([""]);
     let [inputValues, setInputValues] = useState(["",""]);
+    let [img, setImg] = useState("");
     let [visible, setVisible] = useState(false);
 
     const handleToggle = () => {
@@ -63,10 +64,11 @@ function Background({ list, fetchPatterns }) {
             return (
                 <div> 
                     <li>
-                        <Cards  key={singlePattern.ID}
+                        <Cards  key={singlePattern.PATTERN_ID}
                                 handleToggle={handleToggle}
-                                ID={singlePattern.ID}
-                                PATTERN_TITLE={singlePattern.PATTERN_TITLE} 
+                                PATTERN_ID={singlePattern.PATTERN_ID}
+                                PATTERN_IMG={singlePattern.PATTERN_IMG}
+                                PATTERN_TITLE={singlePattern.PATTERN_TITLE}
                                 PATTERN_LINK={singlePattern.PATTERN_LINK}
                         />
                     </li>
@@ -83,6 +85,8 @@ function Background({ list, fetchPatterns }) {
                     fetchPatterns={fetchPatterns}
                     inputValues={inputValues}
                     setInputValues={setInputValues}
+                    img={img}
+                    setImg={setImg}
                 />
             </div>
             <div>
@@ -90,13 +94,6 @@ function Background({ list, fetchPatterns }) {
             </div>
             <div className='card-container'>
                 {renderList(list)}
-            </div>
-            <div>
-                {visible && <PatternDisplayModal
-                                className="modal-container" 
-                                key="modal"
-                                handleToggle={handleToggle}/>}
-
             </div>
        </div>
     )

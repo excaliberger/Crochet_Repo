@@ -1,4 +1,4 @@
-import connection from "./index";
+import connection from "./index.js";
 
 const query = (qryStr, values) => {
   return new Promise((resolve, reject) => {
