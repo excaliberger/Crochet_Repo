@@ -92,8 +92,10 @@ function Background({ list, fetchPatterns }) {
             <div>
                 {displaySearchBar()}
             </div>
-            <div className='card-container'>
-                {renderList(list)}
+            <div className='pinboard'>
+                <div className='masonry-grid'>
+                    <div className='masonry-grid__item'>{renderList(list)}</div>
+                </div>
             </div>
        </div>
     )

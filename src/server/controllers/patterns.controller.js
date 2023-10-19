@@ -6,11 +6,11 @@ import data from "../db/CROCHET_DB.json" assert { type: "json" };
 const dataPath = path.join(`././db/CROCHET_DB.json`);
 
 const findAll = async () => {
-  return await query("SELECT PATTERN_ID, PATTERN_TITLE, PATTERN_LINK FROM CROCHET_DB");
+  return await query("SELECT PATTERN_ID, PATTERN_TITLE, PATTERN_LINK, PATTERN_IMG FROM CROCHET_DB");
 };
 
 const findOne = async (id) => {
-  return await query("SELECT PATTERN_ID, PATTERN_TITLE, PATTERN_LINK FROM CROCHET_DB WHERE PATTERN_ID = ?", [
+  return await query("SELECT PATTERN_ID, PATTERN_TITLE, PATTERN_LINK, PATTERN_IMG FROM CROCHET_DB WHERE PATTERN_ID = ?", [
     id
   ]);
 };
@@ -20,13 +20,13 @@ const addOne = async (pattern) => {
   pattern['PATTERN_ID']=''+sqlQueryAdd.insertId;
   data.push(pattern);
 
-  writeFile("./db/CROCHET_DB.json", JSON.stringify(data), (err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log("successfully created file.");
-    }
-  });
+  // writeFile("./db/CROCHET_DB.json", JSON.stringify(data), (err) => {
+  //   if (err) {
+  //       console.error(err);
+  //   } else {
+  //       console.log("successfully created file.");
+  //   }
+  // });
 
   return sqlQueryAdd;
 };
@@ -36,13 +36,13 @@ const updateOne = async (id, pattern) => {
   pattern['PATTERN_ID']=''+sqlQueryUpdate.insertId;
   data.push(id, pattern);
 
-  writeFile("./db/CROCHET_DB.json", JSON.stringify(data), (err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log("successfully created file.");
-    }
-  });
+  // writeFile("./db/CROCHET_DB.json", JSON.stringify(data), (err) => {
+  //   if (err) {
+  //       console.error(err);
+  //   } else {
+  //       console.log("successfully created file.");
+  //   }
+  // });
 
   return sqlQueryUpdate;
 };

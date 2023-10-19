@@ -1,6 +1,6 @@
 function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues, img, setImg }) {
 
-    let titleImg = document.getElementsByTagName('img');
+    let titleImg = document.getElementsByTagName('img').src;
     let title = inputValues[0];
     let link = inputValues[1];
     // let author = inputValues[3];
@@ -18,8 +18,7 @@ function PostNewPatternForm ({ fetchPatterns, inputValues, setInputValues, img, 
     //           })}
     //     )
     //     .then ((res) =>  {
-    //         let temp = res.json();
-    //         return temp;
+    //         res.json();
     //     })
     //     .catch ((err) => {console.error(err)});                        
     // };

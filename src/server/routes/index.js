@@ -31,23 +31,29 @@ router.get("/:id?", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   let body = req.body;
   let url = body.PATTERN_LINK;
-  let data;
-  scraperParamsTrigger(url);
-  data = await pattern.addOne(body);
-  console.log('------------------------')
-  console.log('------------------------')
-  console.log("body", body);
-  console.log('------------------------')
-  console.log('------------------------')
+  let data = await pattern.addOne(body);
+  scraperParamsTrigger(url, (imgUrl) => {
+    pattern.updateOne(data.insertId, {PATTERN_IMG: imgUrl});
+    console.log('------------------------')
+    console.log('------------------------')
+    console.log("scraper finished")
+    console.log('------------------------')
+    console.log('------------------------')
+  });
   res.json({"message": "successfully inserted one value"});
 });
 
 //PUT requests updates object in API
 router.put("/:id", async (req, res, next) => {
   let { id } = req.params;
-  let data; 
+  let data;
   let body = req.body;
   data = await pattern.updateOne(id, body);
+  console.log('------------------------')
+  console.log('------------------------')
+  console.log("body", body);
+  console.log('------------------------')
+  console.log('------------------------')
   res.json({"message": "entry sucessfully updated"});
 });
 

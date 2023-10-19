@@ -4,8 +4,6 @@ import patternFunctions from '../controllers/patterns.controller.js'
 
 export const imgScraper = async (url) =>  {
 
-    url = patternFunctions.PATTERN_LINK;
-
     const browser = await puppeteer.launch({
         headless: 'new',
     });
@@ -21,12 +19,12 @@ export const imgScraper = async (url) =>  {
 
         const imgArray = Array.from(returnedImgArray).slice(0, 3).map((img) => {
             const src = img.src;
-            return { src };
+            return src;
             });
         
         return imgArray[0];
     });
-    console.log(titleImg);
+    // console.log(titleImg);
     return titleImg;
 
 };
