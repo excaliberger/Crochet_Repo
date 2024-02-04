@@ -8,7 +8,7 @@ import PostNewPatternForm from './PostNewPatternForm.jsx'
 function Background({ list, fetchPatterns }) {
 
     // let [selectedPattern, setSelectedPattern] = useState({});
-    let [filteredList, setFilteredList] = useState([{}]);
+    let [filteredList, setFilteredList] = useState([]);
     let [searchCriteria, setSearchCriteria] = useState(["",""]);
     let [inputValues, setInputValues] = useState(["",""]);
     let [img, setImg] = useState("");
@@ -17,24 +17,6 @@ function Background({ list, fetchPatterns }) {
     const handleToggle = () => {
         setVisible((current) => !current);
     }
-
-    // function setStateOnClick(singlePattern) {
-    //     setSelectedPattern(singlePattern);
-    // }
-
-    // function setStateAndDisplayDetails(patternIndex) {
-    //     setStateOnClick(list.pattern[patternIndex]);
-    //     // displayDetails(list.pattern[patternIndex]);
-    // }
-
-    // function setStateOnClick(singlePattern) {
-    //     setSelectedPattern(singlePattern);
-    // }
-
-    // function setStateAndDisplayDetails(PatternIndex) {
-    //     setStateOnClick(list.Pattern[PatternIndex]);
-    //     displayDetails(list.Pattern[PatternIndex]);
-    // }
 
     useEffect(() => {
         let newList = filterPatternsByName(list, searchCriteria);
@@ -59,26 +41,30 @@ function Background({ list, fetchPatterns }) {
 
     function renderList(patternList) {
 
-        return patternList && filteredList.map((singlePattern) => {
+    let displayedList = (Object.keys(filteredList).length === 0) ? patternList : filteredList;
 
-            console.log("singlePattern", singlePattern)
-            console.log("filteredList", filteredList)
-            
-            return (
-                <div> 
-                    <li>
-                        <Cards  key={singlePattern.PATTERN_ID}
-                                handleToggle={handleToggle}
-                                PATTERN_ID={singlePattern.PATTERN_ID}
-                                PATTERN_IMG={singlePattern.PATTERN_IMG}
-                                PATTERN_TITLE={singlePattern.PATTERN_TITLE}
-                                PATTERN_LINK={singlePattern.PATTERN_LINK}
-                        />
-                    </li>
-                </div>
-            )
-        })
-    }; 
+    console.log("filtered list", Object.keys(filteredList).length)
+
+    return displayedList && displayedList.map((singlePattern) => {
+
+        console.log("singlePattern", singlePattern)
+        console.log("filteredList", filteredList)
+        
+        return (
+            <div> 
+                <li>
+                    <Cards  key={singlePattern.PATTERN_ID}
+                            handleToggle={handleToggle}
+                            PATTERN_ID={singlePattern.PATTERN_ID}
+                            PATTERN_IMG={singlePattern.PATTERN_IMG}
+                            PATTERN_TITLE={singlePattern.PATTERN_TITLE}
+                            PATTERN_LINK={singlePattern.PATTERN_LINK}
+                    />
+                </li>
+            </div>
+        )
+    })
+}; 
 
     return (
         <div>

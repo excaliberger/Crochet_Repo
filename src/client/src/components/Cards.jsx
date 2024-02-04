@@ -2,12 +2,6 @@
 function Cards({ PATTERN_ID, PATTERN_IMG, PATTERN_TITLE, PATTERN_LINK, handleToggle }) {
 
     function displayCards() {
-        console.log("displayCards works")
-        console.log("pattern id", PATTERN_ID, <br/>,
-                    "pattern image", PATTERN_IMG, <br/>,
-                    "pattern title", PATTERN_TITLE, <br/>,
-                    "pattern link", PATTERN_LINK
-                    )
         
         return (
             <div 
