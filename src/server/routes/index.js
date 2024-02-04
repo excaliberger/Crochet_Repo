@@ -31,15 +31,12 @@ router.get("/:id?", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   let body = req.body;
   let url = body.PATTERN_LINK;
+  let title = body.PATTERN_TITLE;
   let data = await pattern.addOne(body);
-  scraperParamsTrigger(url, (imgUrl) => {
+  scraperParamsTrigger(url, 
+    (imgUrl) => {
     pattern.updateOne(data.insertId, {PATTERN_IMG: imgUrl});
-    console.log('------------------------')
-    console.log('------------------------')
-    console.log("scraper finished")
-    console.log('------------------------')
-    console.log('------------------------')
-  });
+    });
   res.json({"message": "successfully inserted one value"});
 });
 

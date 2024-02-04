@@ -9,7 +9,7 @@ function Background({ list, fetchPatterns }) {
 
     // let [selectedPattern, setSelectedPattern] = useState({});
     let [filteredList, setFilteredList] = useState([{}]);
-    let [searchCriteria, setSearchCriteria] = useState([""]);
+    let [searchCriteria, setSearchCriteria] = useState(["",""]);
     let [inputValues, setInputValues] = useState(["",""]);
     let [img, setImg] = useState("");
     let [visible, setVisible] = useState(false);
@@ -60,6 +60,9 @@ function Background({ list, fetchPatterns }) {
     function renderList(patternList) {
 
         return patternList && filteredList.map((singlePattern) => {
+
+            console.log("singlePattern", singlePattern)
+            console.log("filteredList", filteredList)
             
             return (
                 <div> 
@@ -93,9 +96,10 @@ function Background({ list, fetchPatterns }) {
                 {displaySearchBar()}
             </div>
             <div className='pinboard'>
-                <div className='masonry-grid'>
+                {/* <div className='masonry-grid'>
                     <div className='masonry-grid__item'>{renderList(list)}</div>
-                </div>
+                </div> */}
+                {renderList(list)}
             </div>
        </div>
     )
